@@ -1,0 +1,157 @@
+{% extends "core/base.html"%}
+{% load static %}
+{% block title%}movie/movielist{%endblock%}
+{% block content %}
+<body class="bg-dark  ">    
+    <div class="container">
+        <h1 class="text-center pb-4 text-white">{{movie.title}}</h1>
+      <div class="d-flex justify-content-between">
+        <a href="" class="text-decoration-none hover-scale-12">
+            <div class="card" style="width: 18rem; border: none;">
+                <img src="{{movie.poster.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2>{{movie.title}}</h2>
+                  <p>Рейтинг: <span>{{movie.rating}}</span></p>
+                  <p class="">
+                    {% for genre in movie.genres.all %}
+                    {{genre.name}}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                  </p>
+                  <span class="" style="font-size: 15px;color: gray;">{{movie.release_date}}</span>
+                </div>
+              </div>
+            </a>
+
+
+            <div class="">
+      <div style="max-width: 500px;" class="justify-content-center">
+        <p style="color: white;">{{movie.description}}</p>
+      </div>
+
+
+
+        <div class="">
+          <h3 style="color: white;">Актеры:</h3>
+            {%for actor in movie.actors.all%}
+            <h4 style="color: white;">{{actor.name}}</h4>
+           {%endfor%}
+      </div>
+          </div>
+
+
+
+          
+  <div class="" style="max-height: 100px;">
+    <h3 style="color: white;">Режиссеры:</h3>
+      {%for director in movie.directors.all%}
+      <h3 style="color: white;">{{director.name}}</h3>
+     {%endfor%}
+ 
+</div>
+
+
+
+
+  
+
+
+</div>
+</div>
+   
+{% if not movie.video == Null %}
+
+<section>
+
+<div class="gap-5 d-flex mt-5" >
+  <video src="{{movie.video.url}}" width="100%" allowfullscreen="" controls="controls">
+    <source src="/media/cc0-videos/flower.webm" type="video/webm" />
+  
+    <source src="/media/cc0-videos/flower.mp4" type="video/mp4" />
+  
+
+    <a href="/media/cc0-videos/flower.webm">WEBM</a>
+
+    <a href="/media/cc0-videos/flower.mp4">MP4</a>
+
+  </video>
+
+ </div>
+
+</section>
+
+{%endif%}
+
+
+<section class="comments" style="padding-top: 20px;">
+  <div class="container">
+<form action="{% url 'add_movie_review' %}" method="post"> 
+  {% csrf_token %}
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-15 col-lg-12">
+      <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+        <div class="card-body p-2">
+          <div data-mdb-input-init class="form-outline mb-4">
+            <textarea type="text" name="review_text" id="" class="form-control" placeholder="Оставить отзыв..."></textarea>
+            <input type="hidden" value="{{movie.id}}" name="movie_id">
+          </div>
+        </div>
+
+        <div class="d-grid gap-1 col-6 mx-auto">
+          <button class="btn btn-dark" type="submit" name="">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+</form>
+
+
+  {% for review in movie.reviews.all %}
+<section style="padding-top: 20px;">
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex">
+      <img class="rounded-circle shadow-1-strong me-3"
+      src="https://img.icons8.com/?size=100&id=77883&format=png&color=EBEBEB" width="40" height="40" />
+      <div class="w-100">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 style="color: black;">{{review.author.username}}</h6>
+            <p style="color: black;"> {{review.text}}</p>
+            <span style="color: black;">{{review.created_at}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+  {%endfor%}
+
+
+
+</div>
+</section>
+
+
+
+
+
+
+
+<!-- <div>
+  <form action=""> 
+
+    <textarea name="review_text" id="" placeholder="Оставь отзыв"></textarea>
+    <button type="submit" class="comment">Отправить</button>
+
+
+  </form>
+</div> -->
+
+
+
+
+
+{%endblock%}

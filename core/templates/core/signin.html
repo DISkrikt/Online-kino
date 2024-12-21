@@ -1,0 +1,16 @@
+{% extends "core/base.html"%}
+{% load static %}
+{% block title%}movie/movielist{%endblock%}
+{% block content %}
+
+<section class="mb-10" style="height: 530px;">
+<h1 class="text-center">Sign in</h1>
+<form class="d-flex flex-column gap-2 mx-auto" method="post" style="width: 21rem;">
+    {% csrf_token %}
+    <input class="form-control" type="text" placeholder="Enter your username..." name="username" required>
+    <input class="form-control" type="password" placeholder="Enter your password..." name="password" required>
+    <button type="submit" class="btn btn-outline-warning">confirm</button>
+</form>
+</section>
+
+{%endblock%}

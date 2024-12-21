@@ -1,0 +1,19 @@
+{% extends "core/base.html"%}
+{% load static %}
+{% block title%}shop/catalog{%endblock%}
+{% block content %}
+
+
+<div class="container align-item-start w-100% my-5">
+    <section class="user-info w-25%" style="min-width: 18rem;height: 530px;">
+    <h1 style="padding-top: 2rem; text-align: center;">Личный кабинет</h1>
+    <img class="rounded-circle" src="https://img.icons8.com/?size=100&id=77883&format=png&color=EBEBEB" style="width: 8rem; padding-top: 3rem;" alt="">
+    <h2 class="ms-3">{{request.user.username}}</h2>
+
+    <div class="d-block ms-3">
+        <p>email: {{request.user.email}}</p> 
+    </div>
+</section>
+</div>
+
+{%endblock%}

@@ -1,0 +1,18 @@
+{% extends "core/base.html"%}
+{% load static %}
+{% block title%}movie/movielist{%endblock%}
+{% block content %}
+
+<section style="height: 530px;">
+<h1 class="text-center">Sign up</h1>
+<form class="d-flex flex-column gap-2 mx-auto" method="post" style="width: 21rem;">
+    {% csrf_token %}
+    <input class="form-control" type="text" placeholder="Enter your username..." name="username" required>
+    <input class="form-control" type="email" placeholder="Enter your email..." name="email" required>
+    <input class="form-control" type="password" placeholder="Enter your password..." name="password" required>
+    <input class="form-control" type="password" placeholder="Repeat your email..." name="repeat_password" required>
+    <button type="submit" class="btn btn-outline-warning">confirm</button>
+</form>
+</section>
+
+{%endblock%}

@@ -1,0 +1,55 @@
+{% extends "core/base.html"%}
+{% load static %}
+{% block title%}movie/movielist{%endblock%}
+{% block content %}
+<body class="bg-dark  ">
+
+
+
+<div class="container">
+
+
+
+  <h1 class="text-center pb-4 text-white">Фильмы</h1>
+<div class="d-flex flex-wrap gap-5">
+
+
+
+
+
+
+
+  
+{% for movie in movies%}
+
+
+ 
+
+
+
+<div class="card" style="width: 18rem; border: none;">
+    <img src="{{movie.poster.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+    <a href="{% url 'films' film_id=movie.id %}" style="text-decoration: none; color: black;"><h2 class="">{{movie.title}}</h2></a>
+      <p>Рейтинг: <span>{{movie.rating}}</span></p>
+      <p class="">
+        {% for genre in movie.genres.all %}
+        {{genre.name}}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+      <span class="" style="font-size: 15px;color: gray;">{{movie.release_date}}</span>
+    </div>
+  </div>
+
+
+{% endfor %}
+</div>
+</div>
+
+
+<!-- <li><a href="{% url 'signin' %}" class="btn btn-outline-warning">Вход</a></li> -->
+
+
+
+
+{%endblock%}

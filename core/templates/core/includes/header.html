@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-black mb-5" >
+    <div class="container-fluid" >
+      <a href="{% url 'movielist' %}" class="navbar-brand" href="#" style="color: white;">КИНО</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white;">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true" style="color: white;">Disabled</a>
+          </li>
+        </ul>
+    <ul class="list-unstyled d-flex gap-2 align-items-center">
+      {% if request.user.is_authenticated == False %}
+      <li><a href="{% url 'signin' %}" class="btn btn-outline-warning">Вход</a></li>
+      <li><a href="{% url 'signup' %}" class="btn btn-outline-warning">Зарегистрироваться</a></li>
+      {% else %}
+      <li><a href="{% url 'profile' %}" class="btn btn-outline-warning">Профиль</a></li>
+      <li><a href="{% url 'signout' %}" class="btn btn-outline-warning">Выйти</a></li>
+      {% endif %}
+    </ul>
+      </div>
+    </div>
+
+    
+  </nav>
